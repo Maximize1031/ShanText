@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b111d" />
-  <meta name="description" content="ShanText is a shared context layer for professional AI: composable, permissioned context objects with provenance, history, and conversational-speed access." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ShanText — Context, ready when you are." />
+  <meta property="og:description" content="Create, organize, and share persistent context across people, teams, and AI applications. A Verdugo Labs project." />
+  <meta property="og:url" content="https://www.shantext.com/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="description" content="ShanText is a universal context store for creating, organizing, and sharing persistent context objects across people, teams, and AI applications." />
   <title>ShanText — Context, ready when you are.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -102,7 +107,30 @@
     .footer .brandmark { width:26px; height:26px; }
     .footer .brandmark svg { width:18px; height:18px; }
     .footer p { margin:0; }
-    .contact-link { color:var(--teal); text-decoration:underline; text-underline-offset:4px; overflow-wrap:anywhere; }
+
+    .ownership-statement{margin-top:22px;border:1px solid #2f635e;background:linear-gradient(110deg,#123333,#122336);border-radius:13px;padding:35px 38px;}
+    .ownership-kicker{display:block;color:var(--teal);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
+    .ownership-statement h3{font-size:clamp(23px,2.8vw,32px);letter-spacing:-1px;margin:0 0 10px;}
+    .ownership-statement p{font-size:14px;line-height:1.8;max-width:760px;color:#acc0ce;margin:0;}
+    .context-showcase{background:#0d1725;border-top:1px solid #223145;border-bottom:1px solid #223145;}
+    .context-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:center;}
+    .context-layout .section-heading{margin:0;}
+    .example-disclaimer{font-size:11px!important;opacity:.78;}
+    .invention-card{background:linear-gradient(155deg,#18283c,#111c2b);border:1px solid #355366;border-radius:16px;padding:25px;box-shadow:0 24px 65px rgba(0,0,0,.2);}
+    .invention-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:20px;border-bottom:1px solid #304458;}
+    .context-id{font-size:10px;color:#7bdacb;letter-spacing:1.4px;}
+    .invention-heading h3{font-size:22px;letter-spacing:-.8px;margin:7px 0 4px;}
+    .invention-heading p{font-size:11px;color:#93aabf;margin:0;}
+    .example-pill{font-size:10px;padding:6px 10px;color:#a5e8de;background:#1b4241;border-radius:40px;}
+    .invention-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;padding:21px 0;}
+    .invention-grid div{background:#17283b;border:1px solid #2b4359;border-radius:8px;padding:14px;min-height:78px;}
+    .invention-grid span{font-size:10px;color:#85a6b9;display:block;margin-bottom:9px;}
+    .invention-grid strong{font-size:12px;line-height:1.5;color:#e1eff7;font-weight:600;}
+    .invention-footer{display:flex;gap:7px;flex-wrap:wrap;}
+    .invention-footer span{border-radius:5px;font-size:10px;padding:7px 9px;background:#1b3540;color:#b9dcdd;}
+    .invention-note{font-size:11px;color:#87a9b7;margin:15px 0 0;}
+    @media(max-width:880px){.context-layout{grid-template-columns:1fr;gap:28px;}}
+    @media(max-width:570px){.ownership-statement{padding:24px;}.invention-card{padding:16px;}.invention-grid{gap:8px;}.invention-grid div{padding:11px;}.invention-heading h3{font-size:19px;}}
     :focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
     @media (max-width:880px) { .hero{grid-template-columns:1fr;padding-top:60px;} .hero-copy{max-width:680px;} .visual{max-width:640px;width:100%;margin:auto;} .features{grid-template-columns:repeat(2,1fr);} .trust{flex-direction:column;align-items:flex-start;} .trust-list{flex:auto;} }
     @media (max-width:570px) { .container{padding:0 20px;} .header{padding-top:20px;padding-bottom:20px;} .nav a:not(.nav-cta){display:none;} .nav .nav-cta{font-size:11px;padding:9px 12px;} .brand{font-size:20px;} .hero{padding-top:45px;padding-bottom:65px;} h1{font-size:52px;letter-spacing:-2.9px;} .lead{font-size:16px;} .section{padding-top:76px;padding-bottom:78px;} .features,.steps{grid-template-columns:1fr;} .steps{gap:18px;} .feature{min-height:0;} .trust{padding:25px;} .closing{padding-top:85px;padding-bottom:90px;} .footer-inner{flex-direction:column;align-items:flex-start;} .demo{padding:18px;} .object-card{padding:13px;} .strip-inner{gap:10px 20px;font-size:10px;} }
@@ -112,53 +140,52 @@
 <body>
   <header class="container header">
     <a href="#top" class="brand" aria-label="ShanText home"><span class="brandmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 6.3 16 6.8M7 8l4 8m6-7-4 7"/></svg></span>ShanText</a>
-    <nav class="nav" aria-label="Main navigation"><a href="#approach">The approach</a><a href="#possibilities">Capabilities</a><a href="#example" class="nav-cta">See the concept ↗</a></nav>
+    <nav class="nav" aria-label="Main navigation"><a href="#approach">The approach</a><a href="#context-object">Example object</a><a href="mailto:Shant@verdugolabs.ai" class="nav-cta">Contact ↗</a></nav>
   </header>
   <main id="top">
     <section class="container hero">
       <div class="hero-copy">
-        <div class="eyebrow">Introducing a Verdugo Labs concept</div>
+        <div class="eyebrow">Context infrastructure for professional AI</div>
         <h1>Context, <span class="gradient">ready when you are.</span></h1>
-        <p class="lead">What if every AI assistant had instant access to the knowledge your team already knows? ShanText is a new layer of shared, composable context—built for professionals who can't afford to hunt for answers.</p>
+        <p class="lead">What if context were as easy to create, organize, and share as a Google Drive file? ShanText brings persistent context objects to people, teams, and AI applications—so important knowledge is available when it matters.</p>
         <div class="hero-actions"><a class="button primary" href="#approach">Explore ShanText <span aria-hidden="true">↗</span></a><a class="button secondary" href="#example">See an example <span aria-hidden="true">→</span></a></div>
-        <p class="project-note">Professional services · AI infrastructure</p>
+        <p class="project-note">Professional knowledge · Shared context · AI infrastructure</p>
       </div>
       <div class="visual" aria-label="Illustration of a shared context object comprising sources, facts, and a fast answer">
-        <div class="window-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>ShanText / context objects</span></div>
+        <div class="window-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>shantext / context objects</span></div>
         <div class="object-card">
-          <div class="object-header"><div class="object-name"><span class="icon-square">✧</span> Client / Matter Context</div><span class="status">● Synced context</span></div>
-          <p class="object-desc">A reusable knowledge object—not another folder of files.</p>
+          <div class="object-header"><div class="object-name"><span class="icon-square">✧</span> Invention Context</div><span class="status">◇ Invention object</span></div>
+          <p class="object-desc">One shared object built from many sources—not another folder of files.</p>
           <div class="micro-label">Connected context</div>
-          <div class="sources"><span class="source">↗ Email</span><span class="source">▤ Documents</span><span class="source">▦ Practice systems</span><span class="source">♧ Meeting notes</span></div>
+          <div class="sources"><span class="source">↗ Inventor email</span><span class="source">▤ Disclosure</span><span class="source">▦ Patent system</span><span class="source">♧ Interview notes</span></div>
           <div class="connector">↓</div>
-          <div class="derived"><div class="small-card"><strong>◈ Atomic facts</strong><p>Key dates, obligations, events, terms and relationships</p></div><div class="small-card"><strong>⬡ Composed context</strong><p>Cross-source history, decisions and relevant timelines</p></div></div>
-          <div class="answer"><div class="answer-top"><span>✦ AI-ready context</span><span>Source-aware · Permissioned</span></div><p>Relevant knowledge delivered when it's needed, with a path back to the underlying evidence.</p></div>
+          <div class="derived"><div class="small-card"><strong>◈ Atomic facts</strong><p>Inventors, conception, features and disclosures</p></div><div class="small-card"><strong>⬡ Composed context</strong><p>Prior art, business value, filing status and history</p></div></div>
+          <div class="answer"><div class="answer-top"><span>✦ AI-ready context</span><span>Designed for provenance</span></div><p>What is technically novel, what is the business value, and what is the filing status?</p></div>
         </div>
       </div>
     </section>
-    <div class="strip"><div class="container strip-inner"><span>Built for legal</span><span>Built for accounting</span><span>Built for advisory</span><span>Designed for every AI assistant</span></div></div>
+    <div class="strip"><div class="container strip-inner"><span>Create once</span><span>Share with control</span><span>Use across AI</span><span>Keep your context</span></div></div>
     <section class="container section" id="approach">
-      <div class="section-heading"><div class="eyebrow">A different way to organize knowledge</div><h2>Beyond documents.<br/><span class="gradient">Beyond search.</span></h2><p>Files are where knowledge gets stored. Context is what people actually need. ShanText explores turning scattered information into living, reusable context objects that AI systems can understand and share.</p></div>
+      <div class="section-heading"><div class="eyebrow">A different way to organize knowledge</div><h2>Beyond documents.<br/><span class="gradient">Beyond search.</span></h2><p>Files are where knowledge gets stored. Context is what people actually need. ShanText turns scattered information into living, reusable context objects that AI systems can understand and share.</p></div>
       <div class="features" id="possibilities">
-        <article class="feature"><div class="feature-icon">◇</div><h3>Atomic by design</h3><p>One document can contain many facts. One fact can depend on many sources. Context objects reflect what information means—not where it lives.</p></article>
-        <article class="feature"><div class="feature-icon">⬡</div><h3>Composable context</h3><p>Combine objects into client, matter, engagement, or organization views. Reuse the same context across teams and workflows.</p></article>
-        <article class="feature"><div class="feature-icon">↗</div><h3>Available across AI</h3><p>Designed as an independent layer that assistants and professional AI applications could access through common interfaces such as APIs and MCP.</p></article>
-        <article class="feature"><div class="feature-icon">⌁</div><h3>Kept current</h3><p>As sources change, derived facts and summaries can be refreshed, reconciled, and versioned—without rebuilding knowledge by hand.</p></article>
-        <article class="feature"><div class="feature-icon">◎</div><h3>Evidence attached</h3><p>Know where information came from, when it was true, and what supports it. Answers should be traceable, not merely plausible.</p></article>
-        <article class="feature"><div class="feature-icon">♧</div><h3>Scoped by permission</h3><p>Context sharing should respect client boundaries, matter restrictions, and professional confidentiality at every level.</p></article>
+        <article class="feature"><div class="feature-icon">◇</div><h3>Create</h3><p>Turn emails, meetings, documents, databases, and professional judgment into named context objects. One document may yield many facts; one object may draw from many sources.</p></article>
+        <article class="feature"><div class="feature-icon">⬡</div><h3>Share</h3><p>Compose objects into larger views, give each a stable identity, and determine which people, teams, and AI applications can access them.</p></article>
+        <article class="feature"><div class="feature-icon">↗</div><h3>Use anywhere</h3><p>Make relevant context available to authorized assistants through open interfaces such as APIs and MCP, without rebuilding it separately for each AI application.</p></article>
       </div>
+      <div class="ownership-statement"><span class="ownership-kicker">A different model of ownership</span><h3>Your context shouldn't belong to your AI application.</h3><p>Switch assistants, collaborate with colleagues, or use specialized professional software. The underlying context should stay yours: persistent, portable, and accessible under your rules.</p></div>
     </section>
-    <section class="how" id="how"><div class="container section"><div class="section-heading"><div class="eyebrow">The approach</div><h2>From scattered information<br/>to shared understanding.</h2></div><div class="steps"><div class="step"><div class="step-num">01 / Connect</div><h3>Start with the sources.</h3><p>Bring together relevant information from email, documents, systems of record, conversations, and existing context objects.</p></div><div class="step"><div class="step-num">02 / Compose</div><h3>Create living context.</h3><p>Extract facts, preserve relationships, reconcile changes, and assemble permissioned views for the people and matters that need them.</p></div><div class="step"><div class="step-num">03 / Ask</div><h3>Get to the answer.</h3><p>Make the right context reachable from an AI assistant during a client call, meeting, or time-sensitive professional workflow.</p></div></div></div></section>
-    <section class="container section" id="example"><div class="section-heading"><div class="eyebrow">Designed for the moment of need</div><h2>As natural as asking<br/>the colleague next to you.</h2><p>Imagine using ShanText-backed context in the middle of a conversation. Explore hypothetical examples of the experience we're designing.</p></div><div class="demo"><div class="demo-head"><strong>Illustrative context interaction</strong><span>Concept demo · Not live data</span></div><div class="question-options" role="group" aria-label="Choose a question"><button type="button" class="question" aria-pressed="true" data-question="payments">Did the client pay estimated taxes last year?</button><button type="button" class="question" aria-pressed="false" data-question="warranty">Did the client sell any stock?</button><button type="button" class="question" aria-pressed="false" data-question="matter">What information is still needed?</button></div><div class="demo-result" aria-live="polite"><p id="answer-text"></p><small id="answer-meta"></small></div></div></section>
-    <section class="container"><div class="trust"><div><div class="eyebrow" style="margin-bottom:22px">Professional-grade by intention</div><h2>Trust must travel<br/>with the context.</h2><p>For law, accounting, and advisory firms, useful context isn't enough. ShanText's envisioned architecture puts source provenance, confidentiality-aware permissions, history, and auditability at the center—not as an afterthought.</p></div><ul class="trust-list"><li>Source-level provenance</li><li>Client and matter boundaries</li><li>Versioned facts and context</li><li>Access and activity audit trails</li><li>Policies for sensitive information</li></ul></div></section>
-    <section class="container closing"><div class="eyebrow" style="justify-content:center;margin-bottom:24px">The next layer for professional AI</div><h2>The right knowledge.<br/><span class="gradient">The moment it matters.</span></h2><p>We're exploring how context objects can make institutional knowledge reusable across people, teams, and AI systems—at the speed of conversation.</p><p>Contact us at <a class="contact-link" href="mailto:shant@verdugolabs.ai">shant@verdugolabs.ai</a>.</p><a class="button primary" href="#top">Back to the vision ↑</a><p class="project-note" style="margin-top:24px"></p></section>
+    <section class="context-showcase" id="context-object"><div class="container section context-layout"><div class="section-heading"><div class="eyebrow">One object, many sources</div><h2>Meet a context object.</h2><p>Take an invention. Its useful context isn't contained in one document: it spans inventor interviews, disclosures, technical decisions, prior art, and filings. ShanText organizes that knowledge as one persistent, shareable object.</p><p class="example-disclaimer">Example invention context showing how information from multiple sources fits together.</p></div><div class="invention-card"><div class="invention-heading"><div><span class="context-id">CONTEXT / INVENTIONS / 001</span><h3>AI Query Optimization</h3><p>Invention context · Example</p></div><span class="example-pill">Example</span></div><div class="invention-grid"><div><span>Inventors</span><strong>People &amp; contributions</strong></div><div><span>Technical features</span><strong>Problem, mechanism &amp; advantages</strong></div><div><span>Prior art</span><strong>References &amp; distinctions</strong></div><div><span>Business value</span><strong>Commercial significance</strong></div><div><span>Disclosure history</span><strong>Dates &amp; supporting evidence</strong></div><div><span>Filing status</span><strong>Decisions &amp; milestones</strong></div></div><div class="invention-footer"><span>↗ Inventor interviews</span><span>▤ Disclosure</span><span>◎ Evidence</span><span>⌁ Filing records</span></div><p class="invention-note">One addressable context object. Multiple sources. Many possible AI applications.</p></div></div></section>
+    <section class="how" id="how"><div class="container section"><div class="section-heading"><div class="eyebrow">The approach</div><h2>From scattered information<br/>to shared understanding.</h2></div><div class="steps"><div class="step"><div class="step-num">01 / Collect</div><h3>Bring in what matters.</h3><p>Bring together relevant information from email, documents, systems of record, conversations, and existing context objects.</p></div><div class="step"><div class="step-num">02 / Maintain</div><h3>Keep the context current.</h3><p>Extract facts, preserve relationships, reconcile changes, and assemble permissioned views for the people and matters that need them.</p></div><div class="step"><div class="step-num">03 / Share &amp; use</div><h3>Available when needed.</h3><p>Make the right context reachable from an AI assistant during a client call, meeting, or time-sensitive professional workflow.</p></div></div></div></section>
+    <section class="container section" id="example"><div class="section-heading"><div class="eyebrow">Designed for the moment of need</div><h2>As natural as asking<br/>the colleague next to you.</h2><p>Retrieve relevant invention context in the middle of an interview, portfolio review, or filing discussion—without hunting through source documents.</p></div><div class="demo"><div class="demo-head"><strong>Invention context · Interactive example</strong><span>Sample answers · Illustrative data</span></div><div class="question-options" role="group" aria-label="Choose an invention question"><button type="button" class="question" aria-pressed="true" data-question="technical">What is the technical improvement?</button><button type="button" class="question" aria-pressed="false" data-question="priorart">What distinguishes it from prior art?</button><button type="button" class="question" aria-pressed="false" data-question="filing">What's the filing status?</button></div><div class="demo-result" aria-live="polite"><p id="answer-text">The sample invention uses feedback from controlled query experiments to select a more efficient execution strategy, reducing redundant processing while maintaining response quality.</p><small id="answer-meta">Example sources: invention disclosure · inventor interview · experiment notes</small></div></div></section>
+    <section class="container"><div class="trust"><div><div class="eyebrow" style="margin-bottom:22px">Built around professional trust</div><h2>Trust must travel<br/>with the context.</h2><p>For law, accounting, and advisory firms, useful context isn't enough. Source provenance, confidentiality-aware permissions, history, and auditability belong at the center of a professional context platform—not as an afterthought.</p></div><ul class="trust-list"><li>Source-level provenance</li><li>Client and matter boundaries</li><li>Versioned facts and context</li><li>Access and activity audit trails</li><li>Policies for sensitive information</li></ul></div></section>
+    <section class="container closing"><div class="eyebrow" style="justify-content:center;margin-bottom:24px">The next layer for professional AI</div><h2>The right knowledge.<br/><span class="gradient">The moment it matters.</span></h2><p>Keep knowledge portable and reusable across people, teams, and AI systems—at the speed of conversation.</p><a class="button primary" href="#top">Back to the vision ↑</a><p class="project-note" style="margin-top:24px">A Verdugo Labs project · <a href="mailto:Shant@verdugolabs.ai">Shant@verdugolabs.ai</a></p></section>
   </main>
-  <footer class="footer"><div class="container footer-inner"><a href="#top" class="brand"><span class="brandmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 6.3 16 6.8M7 8l4 8m6-7-4 7"/></svg></span>ShanText</a><p>A Verdugo Labs project<br/><a class="contact-link" href="mailto:shant@verdugolabs.ai">shant@verdugolabs.ai</a></p><p>© <span id="year">2026</span> ShanText. </p></div></footer>
+  <footer class="footer"><div class="container footer-inner"><a href="#top" class="brand"><span class="brandmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 6.3 16 6.8M7 8l4 8m6-7-4 7"/></svg></span>ShanText</a><p>A Verdugo Labs project · <a href="mailto:Shant@verdugolabs.ai">Shant@verdugolabs.ai</a></p><p>© <span id="year">2026</span> ShanText. All rights reserved.</p></div></footer>
   <script>
     const examples = {
-      payments: { answer:"Yes,the client paid $52000 in estimated taxes for tax year 2025",meta:"Hypothetical context: client emails + intake form" },
-      warranty: { answer:"Yes,the client sold 100 shares of AAPL stock.",meta:"Hypothetical context: meeting notes + document uploads" },
-      matter: { answer:"Pay stubs for March, April, and May 2025, if available",meta:"Hypothetical context: document uploads + action items" }
+      technical: { answer:"The sample invention uses feedback from controlled query experiments to select a more efficient execution strategy, reducing redundant processing while maintaining response quality.",meta:"Example sources: invention disclosure · inventor interview · experiment notes" },
+      priorart: { answer:"The proposed distinction is the use of measured execution feedback to update query selection. A prior-art review would need to verify whether that feature is new and nonobvious.",meta:"Example sources: prior-art references · feature comparison · inventor interview" },
+      filing: { answer:"The invention is in the evaluation stage in this example. Technical and business reviews are recorded; no filing confirmation is shown in the sample context.",meta:"Example sources: evaluation notes · filing decision record · patent docket" }
     };
     document.querySelectorAll('.question').forEach(button=>button.addEventListener('click',()=>{
       document.querySelectorAll('.question').forEach(b=>b.setAttribute('aria-pressed', String(b===button)));
