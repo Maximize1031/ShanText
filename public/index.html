@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b111d" />
+  <meta name="description" content="ShantText is exploring a shared context layer for professional AI: composable, permissioned context objects with provenance, history, and conversational-speed access." />
+  <title>ShantText — Context, ready when you are.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#0b111d; --surface:#111b2b; --surface2:#142134; --line:#27364a; --text:#edf4fb; --muted:#9baec2; --teal:#6aebd4; --teal-deep:#17aa9a; --violet:#b9a9ff; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; -webkit-font-smoothing:antialiased; }
+    body:before { content:""; position:absolute; z-index:-1; left:0; top:0; width:100%; height:890px; background:radial-gradient(ellipse 52% 60% at 77% 30%,rgba(27,130,123,.18),transparent 75%),radial-gradient(ellipse 50% 55% at 40% -5%,rgba(79,79,162,.13),transparent 80%); pointer-events:none; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; cursor:pointer; }
+    .container { max-width:var(--max); margin:auto; padding:0 28px; }
+    .header { display:flex; align-items:center; justify-content:space-between; padding-top:29px; padding-bottom:29px; }
+    .brand { display:flex; align-items:center; gap:11px; font-family:'Space Grotesk',sans-serif; font-size:23px; letter-spacing:-1.1px; font-weight:700; }
+    .brandmark { width:32px; height:32px; display:grid; place-items:center; border:1px solid #5ee5d1; border-radius:9px; color:var(--teal); background:linear-gradient(135deg,rgba(93,231,207,.18),rgba(93,231,207,.02)); }
+    .brandmark svg { width:22px; height:22px; }
+    .nav { display:flex; gap:29px; align-items:center; font-size:13px; color:#bdccdc; }
+    .nav a:hover,.footer a:hover { color:var(--teal); }
+    .nav .nav-cta { border:1px solid #43566b; border-radius:100px; padding:10px 16px; color:#ecf6ff; }
+    .hero { padding-top:96px; padding-bottom:84px; display:grid; grid-template-columns: .98fr 1.02fr; gap:40px; align-items:center; }
+    .eyebrow { text-transform:uppercase; letter-spacing:2.15px; color:var(--teal); font-size:11px; font-weight:700; display:flex; gap:10px; align-items:center; }
+    .eyebrow:before { content:""; width:22px; height:1px; background:var(--teal); }
+    h1,h2,h3,p { margin-top:0; }
+    h1,h2,h3 { font-family:'Space Grotesk',sans-serif; }
+    h1 { font-size:clamp(49px,5.2vw,77px); line-height:1.055; letter-spacing:-4.3px; font-weight:600; margin:25px 0; }
+    .gradient { color:var(--teal); }
+    .lead { max-width:530px; color:#abbdd0; font-size:18px; line-height:1.72; margin-bottom:31px; }
+    .hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:13px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:10px; border-radius:9px; font-size:13px; font-weight:700; padding:15px 21px; transition:transform .2s,background .2s; }
+    .button:hover { transform:translateY(-2px); }
+    .primary { color:#092322; background:var(--teal); border:1px solid var(--teal); }
+    .secondary { background:transparent; border:1px solid #405166; color:#d6e3ef; }
+    .project-note { margin-top:30px; font-size:12px; color:#718ba3; }
+    .visual { border:1px solid #30445a; background:linear-gradient(155deg,#18253a,#101927 75%); border-radius:19px; box-shadow:0 35px 100px rgba(0,0,0,.34); padding:19px; position:relative; }
+    .visual:after { content:""; position:absolute; z-index:-1; inset:50px; border-radius:60px; background:#11bcaa; filter:blur(95px); opacity:.14; }
+    .window-top { display:flex; align-items:center; gap:6px; padding:2px 1px 17px; font-size:11px; color:#8095a9; }
+    .dot { display:block; width:7px; height:7px; background:#3d5166; border-radius:100%; }
+    .window-top span:last-child { margin-left:11px; }
+    .object-card { background:#122033; border:1px solid #34495e; border-radius:12px; padding:17px; }
+    .object-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:13px; gap:8px; }
+    .object-name { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; display:flex; gap:9px; align-items:center; }
+    .icon-square { width:27px; height:27px; display:grid; place-items:center; background:#1c444b; border:1px solid #317874; color:var(--teal); border-radius:7px; font-size:14px; }
+    .status { color:var(--teal); background:#173b3b; padding:5px 8px; font-size:10px; letter-spacing:.3px; border-radius:100px; white-space:nowrap; }
+    .object-desc { color:#8fa8be; font-size:11px; margin-bottom:16px; line-height:1.5; }
+    .micro-label { color:#7995ae; font-size:10px; text-transform:uppercase; letter-spacing:1.1px; margin-bottom:8px; }
+    .sources { display:flex; flex-wrap:wrap; gap:7px; }
+    .source { color:#d3e0eb; background:#1d2f44; border:1px solid #30455c; border-radius:5px; padding:7px 9px; font-size:10px; }
+    .connector { display:flex; align-items:center; justify-content:center; height:33px; color:#69899b; font-size:18px; }
+    .derived { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+    .small-card { min-height:90px; padding:13px; background:#192a3c; border:1px solid #355067; border-radius:9px; }
+    .small-card:first-child { border-color:#397f7d; }
+    .small-card strong { font-size:11px; font-weight:700; display:block; margin-bottom:9px; }
+    .small-card p { margin:0; color:#9cb0c2; font-size:10px; line-height:1.6; }
+    .answer { margin-top:12px; padding:15px; border-radius:10px; border:1px solid #2b665f; background:linear-gradient(90deg,#153c3b,#18313a); }
+    .answer-top { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:10px; margin-bottom:9px; color:var(--teal); }
+    .answer p { font-size:12px; color:#e9f9f7; line-height:1.65; margin:0; }
+    .strip { padding:25px 0; border-top:1px solid #243345; border-bottom:1px solid #243345; background:rgba(255,255,255,.013); }
+    .strip-inner { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px 40px; color:#8198ae; text-transform:uppercase; letter-spacing:1.5px; font-weight:700; font-size:11px; }
+    .section { padding-top:109px; padding-bottom:110px; }
+    .section-heading { max-width:750px; margin-bottom:48px; }
+    h2 { font-size:clamp(34px,4vw,52px); letter-spacing:-2.25px; font-weight:600; line-height:1.15; margin:17px 0; }
+    .section-heading p { font-size:16px; line-height:1.75; color:#a6b9c9; max-width:640px; }
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .feature { border:1px solid #2b3d51; background:linear-gradient(155deg,#142033,#101b2b); border-radius:12px; padding:29px 25px 27px; min-height:230px; }
+    .feature-icon { display:grid; place-items:center; width:43px; height:43px; background:#193b40; border:1px solid #2d6968; color:var(--teal); border-radius:11px; font-size:20px; margin-bottom:23px; }
+    .feature h3 { font-size:18px; letter-spacing:-.55px; margin:0 0 12px; }
+    .feature p { font-size:13px; line-height:1.7; color:#9bb0c3; margin:0; }
+    .how { border-top:1px solid #223145; background:#0d1725; }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:35px; }
+    .step-num { font-family:'Space Grotesk',sans-serif; color:var(--teal); font-size:14px; margin-bottom:18px; }
+    .step h3 { font-size:20px; margin:0 0 12px; }
+    .step p { color:#a0b4c6; font-size:14px; line-height:1.7; }
+    .demo { border:1px solid #365361; border-radius:17px; padding:29px; background:linear-gradient(135deg,#142736,#111c2c); }
+    .demo-head { display:flex; justify-content:space-between; gap:14px; align-items:center; margin-bottom:20px; }
+    .demo-head span { color:#93aabd; font-size:11px; }
+    .question-options { display:flex; gap:9px; flex-wrap:wrap; margin-bottom:19px; }
+    .question-options button { background:#1a3042; border:1px solid #375266; border-radius:7px; color:#c8dae7; padding:11px 13px; font-size:12px; text-align:left; }
+    .question-options button[aria-pressed="true"] { background:#224a4a; border-color:#5dcbbb; color:#e6fffb; }
+    .demo-result { min-height:116px; background:#0c1928; border:1px solid #30465d; border-radius:9px; padding:20px; }
+    .demo-result p { color:#e5f0f8; font-size:16px; line-height:1.65; margin:0 0 13px; }
+    .demo-result small { color:#8ea8bb; font-size:11px; }
+    .trust { background:linear-gradient(160deg,#102b34,#111c2b); border:1px solid #2f555c; border-radius:18px; padding:44px; display:flex; justify-content:space-between; align-items:center; gap:45px; }
+    .trust h2 { margin:0 0 16px; }
+    .trust p { max-width:590px; color:#a9bdc9; line-height:1.7; margin:0; }
+    .trust-list { flex:0 0 290px; list-style:none; padding:0; margin:0; display:grid; gap:13px; }
+    .trust-list li { color:#d0e1e8; font-size:13px; display:flex; align-items:center; gap:12px; }
+    .trust-list li:before { content:"✓"; color:var(--teal); font-weight:700; }
+    .closing { padding-top:104px; padding-bottom:110px; text-align:center; }
+    .closing h2 { max-width:760px; margin:0 auto 20px; }
+    .closing p { color:#a9bdcd; max-width:590px; margin:0 auto 30px; line-height:1.7; }
+    .footer { border-top:1px solid #26374a; padding:27px 0 36px; }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; color:#8198ad; font-size:12px; }
+    .footer .brand { font-size:17px; color:#d7e7ef; }
+    .footer .brandmark { width:26px; height:26px; }
+    .footer .brandmark svg { width:18px; height:18px; }
+    .footer p { margin:0; }
+    :focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+    @media (max-width:880px) { .hero{grid-template-columns:1fr;padding-top:60px;} .hero-copy{max-width:680px;} .visual{max-width:640px;width:100%;margin:auto;} .features{grid-template-columns:repeat(2,1fr);} .trust{flex-direction:column;align-items:flex-start;} .trust-list{flex:auto;} }
+    @media (max-width:570px) { .container{padding:0 20px;} .header{padding-top:20px;padding-bottom:20px;} .nav a:not(.nav-cta){display:none;} .nav .nav-cta{font-size:11px;padding:9px 12px;} .brand{font-size:20px;} .hero{padding-top:45px;padding-bottom:65px;} h1{font-size:52px;letter-spacing:-2.9px;} .lead{font-size:16px;} .section{padding-top:76px;padding-bottom:78px;} .features,.steps{grid-template-columns:1fr;} .steps{gap:18px;} .feature{min-height:0;} .trust{padding:25px;} .closing{padding-top:85px;padding-bottom:90px;} .footer-inner{flex-direction:column;align-items:flex-start;} .demo{padding:18px;} .object-card{padding:13px;} .strip-inner{gap:10px 20px;font-size:10px;} }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+  </style>
+</head>
+<body>
+  <header class="container header">
+    <a href="#top" class="brand" aria-label="ShantText home"><span class="brandmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 6.3 16 6.8M7 8l4 8m6-7-4 7"/></svg></span>ShantText</a>
+    <nav class="nav" aria-label="Main navigation"><a href="#approach">The approach</a><a href="#possibilities">Capabilities</a><a href="#example" class="nav-cta">See the concept ↗</a></nav>
+  </header>
+  <main id="top">
+    <section class="container hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Introducing a Verdugo Labs concept</div>
+        <h1>Context, <span class="gradient">ready when you are.</span></h1>
+        <p class="lead">What if every AI assistant had instant access to the knowledge your team already knows? ShantText is exploring a new layer of shared, composable context—built for professionals who can't afford to hunt for answers.</p>
+        <div class="hero-actions"><a class="button primary" href="#approach">Explore ShantText <span aria-hidden="true">↗</span></a><a class="button secondary" href="#example">See an example <span aria-hidden="true">→</span></a></div>
+        <p class="project-note">Early-stage concept · Professional services · AI infrastructure</p>
+      </div>
+      <div class="visual" aria-label="Illustration of a shared context object comprising sources, facts, and a fast answer">
+        <div class="window-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>shanttext / context objects</span></div>
+        <div class="object-card">
+          <div class="object-header"><div class="object-name"><span class="icon-square">✧</span> Client / Matter Context</div><span class="status">● Synced context</span></div>
+          <p class="object-desc">A reusable knowledge object—not another folder of files.</p>
+          <div class="micro-label">Connected context</div>
+          <div class="sources"><span class="source">↗ Email</span><span class="source">▤ Documents</span><span class="source">▦ Practice systems</span><span class="source">♧ Meeting notes</span></div>
+          <div class="connector">↓</div>
+          <div class="derived"><div class="small-card"><strong>◈ Atomic facts</strong><p>Key dates, obligations, events, terms and relationships</p></div><div class="small-card"><strong>⬡ Composed context</strong><p>Cross-source history, decisions and relevant timelines</p></div></div>
+          <div class="answer"><div class="answer-top"><span>✦ AI-ready context</span><span>Source-aware · Permissioned</span></div><p>Relevant knowledge delivered when it's needed, with a path back to the underlying evidence.</p></div>
+        </div>
+      </div>
+    </section>
+    <div class="strip"><div class="container strip-inner"><span>Built for legal</span><span>Built for accounting</span><span>Built for advisory</span><span>Designed for every AI assistant</span></div></div>
+    <section class="container section" id="approach">
+      <div class="section-heading"><div class="eyebrow">A different way to organize knowledge</div><h2>Beyond documents.<br/><span class="gradient">Beyond search.</span></h2><p>Files are where knowledge gets stored. Context is what people actually need. ShantText explores turning scattered information into living, reusable context objects that AI systems can understand and share.</p></div>
+      <div class="features" id="possibilities">
+        <article class="feature"><div class="feature-icon">◇</div><h3>Atomic by design</h3><p>One document can contain many facts. One fact can depend on many sources. Context objects reflect what information means—not where it lives.</p></article>
+        <article class="feature"><div class="feature-icon">⬡</div><h3>Composable context</h3><p>Combine objects into client, matter, engagement, or organization views. Reuse the same context across teams and workflows.</p></article>
+        <article class="feature"><div class="feature-icon">↗</div><h3>Available across AI</h3><p>Designed as an independent layer that assistants and professional AI applications could access through common interfaces such as APIs and MCP.</p></article>
+        <article class="feature"><div class="feature-icon">⌁</div><h3>Kept current</h3><p>As sources change, derived facts and summaries can be refreshed, reconciled, and versioned—without rebuilding knowledge by hand.</p></article>
+        <article class="feature"><div class="feature-icon">◎</div><h3>Evidence attached</h3><p>Know where information came from, when it was true, and what supports it. Answers should be traceable, not merely plausible.</p></article>
+        <article class="feature"><div class="feature-icon">♧</div><h3>Scoped by permission</h3><p>Context sharing should respect client boundaries, matter restrictions, and professional confidentiality at every level.</p></article>
+      </div>
+    </section>
+    <section class="how" id="how"><div class="container section"><div class="section-heading"><div class="eyebrow">The approach</div><h2>From scattered information<br/>to shared understanding.</h2></div><div class="steps"><div class="step"><div class="step-num">01 / Connect</div><h3>Start with the sources.</h3><p>Bring together relevant information from email, documents, systems of record, conversations, and existing context objects.</p></div><div class="step"><div class="step-num">02 / Compose</div><h3>Create living context.</h3><p>Extract facts, preserve relationships, reconcile changes, and assemble permissioned views for the people and matters that need them.</p></div><div class="step"><div class="step-num">03 / Ask</div><h3>Get to the answer.</h3><p>Make the right context reachable from an AI assistant during a client call, meeting, or time-sensitive professional workflow.</p></div></div></div></section>
+    <section class="container section" id="example"><div class="section-heading"><div class="eyebrow">Designed for the moment of need</div><h2>As natural as asking<br/>the colleague next to you.</h2><p>Imagine using ShantText-backed context in the middle of a conversation. Explore hypothetical examples of the experience we're designing.</p></div><div class="demo"><div class="demo-head"><strong>Illustrative context interaction</strong><span>Concept demo · Not live data</span></div><div class="question-options" role="group" aria-label="Choose a question"><button type="button" class="question" aria-pressed="true" data-question="payments">Has this tenant paid on time?</button><button type="button" class="question" aria-pressed="false" data-question="warranty">What is the roof warranty?</button><button type="button" class="question" aria-pressed="false" data-question="matter">What decisions are still open?</button></div><div class="demo-result" aria-live="polite"><p id="answer-text">Not consistently. The illustrative payment history shows two late payments in the last six months, followed by an on-time payment in October.</p><small id="answer-meta">Hypothetical context: payment ledger + manager correspondence · Source links available in a real implementation</small></div></div></section>
+    <section class="container"><div class="trust"><div><div class="eyebrow" style="margin-bottom:22px">Professional-grade by intention</div><h2>Trust must travel<br/>with the context.</h2><p>For law, accounting, and advisory firms, useful context isn't enough. ShantText's envisioned architecture puts source provenance, confidentiality-aware permissions, history, and auditability at the center—not as an afterthought.</p></div><ul class="trust-list"><li>Source-level provenance</li><li>Client and matter boundaries</li><li>Versioned facts and context</li><li>Access and activity audit trails</li><li>Policies for sensitive information</li></ul></div></section>
+    <section class="container closing"><div class="eyebrow" style="justify-content:center;margin-bottom:24px">The next layer for professional AI</div><h2>The right knowledge.<br/><span class="gradient">The moment it matters.</span></h2><p>We're exploring how context objects can make institutional knowledge reusable across people, teams, and AI systems—at the speed of conversation.</p><a class="button primary" href="#top">Back to the vision ↑</a><p class="project-note" style="margin-top:24px">ShantText is an exploratory project, not a generally available product. Security and professional controls described here are design goals.</p></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><a href="#top" class="brand"><span class="brandmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 6.3 16 6.8M7 8l4 8m6-7-4 7"/></svg></span>ShantText</a><p>A Verdugo Labs project</p><p>© <span id="year">2026</span> ShantText. Concept in exploration.</p></div></footer>
+  <script>
+    const examples = {
+      payments: { answer:"Not consistently. The illustrative payment history shows two late payments in the last six months, followed by an on-time payment in October.",meta:"Hypothetical context: payment ledger + manager correspondence · Source links available in a real implementation" },
+      warranty: { answer:"The illustrative roof record shows a 10-year workmanship warranty starting in March 2023. The warranty document would need to be verified before relying on it.",meta:"Hypothetical context: contractor agreement + invoice + warranty record" },
+      matter: { answer:"Three illustrative decisions remain open: approve the repair scope, confirm the vendor warranty, and finalize the next client review date.",meta:"Hypothetical context: matter notes + email decisions + meeting action items" }
+    };
+    document.querySelectorAll('.question').forEach(button=>button.addEventListener('click',()=>{
+      document.querySelectorAll('.question').forEach(b=>b.setAttribute('aria-pressed', String(b===button)));
+      const v=examples[button.dataset.question];
+      document.getElementById('answer-text').textContent=v.answer;
+      document.getElementById('answer-meta').textContent=v.meta;
+    }));
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
